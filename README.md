@@ -28,6 +28,24 @@ El proyecto incluye un `Dockerfile` optimizado:
 1.  **Etapa de Compilación:** Usa Maven y JDK 21 para construir el artefacto.
 2.  **Etapa de Ejecución:** Utiliza una imagen **JRE Alpine** (ultra ligera), lo que reduce el tamaño de la imagen final y minimiza la superficie de ataque para mayor seguridad.
 
+### Capa de Dominio
+Aquí es donde viven las Entidades. Son clases puras de Java (POJOs) que no saben nada de bases de datos o de la web.
+
+Contenido: Clases Franchise, Branch, Product.
+
+Regla de negocio: Por ejemplo, la validación de que el stock no sea negativo o que el nombre de una franquicia no sea nulo.
+
+Independencia: Si mañana se requiere dejar de usar Spring Boot, estas clases no cambian en absoluto.
+
+### Capa de Infraestructura
+Aquí es donde la aplicación "toca" el mundo real. Es la capa más externa y la que más cambia.
+
+Adapters de Entrada (Inbound): Tus Controladores REST. Reciben el JSON del usuario y lo convierten en algo que el Caso de Uso entienda.
+
+Adapters de Salida (Outbound): La implementación de R2DBC. Aquí es donde vive el código que habla con Neon.
+
+Configuración: Aquí es donde vive tu Dockerfile y las variables de entorno de Render.
+
 ---
 
 ## 📋 Funcionalidades Destacadas

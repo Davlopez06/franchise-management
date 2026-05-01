@@ -64,14 +64,26 @@ docker run -p 8080:8080 -e SPRING_R2DBC_URL="r2dbc:postgresql://ep-holy-fog-amac
 ## 🚀 Endpoints de la API
 Todos los endpoints están documentados bajo la especificación OpenAPI (Swagger).
 1. Franquicias (Franchises)
-POST /api/franchisesAcción:
-  Crea una nueva franquicia en el sistema.
-  Body: {"name": "Nombre de la Franquicia"}.
-PATCH /api/franchises/{id}/nameAcción: Actualiza el nombre de una franquicia existente.
-3. Sucursales (Branches)
-POST /api/franchises/{franchiseId}/branchesAcción: Agrega una nueva sucursal a una franquicia específica.Body: {"name": "Nombre de la Sucursal"}.
-PATCH /api/branches/{id}/nameAcción: Actualiza el nombre de una sucursal.
+POST /api/franchises: Body:
+{
+  "name": "Utilities"
+}
+GET /api/franchises
+PATCH /api/franchises/{franchiseId}/name?newName=name
+2. Sucursales (Branches)
+GET /api/branches/franchise/{franchiseOd}
+POST /api/branches/: Body: {
+    "name": "Sucursal Norte",
+    "franchiseId": 3
+}
+PATCH /api/branches/{branchId}/name?newName=name
 3. Productos (Products)
-POST /api/branches/{branchId}/productsAcción: Agrega un nuevo producto a una sucursal.Body: {"name": "Producto X", "stock": 100}.
-DELETE /api/branches/{branchId}/products/{productId}Acción: Elimina un producto de una sucursal específica.
-PATCH /api/products/{id}/stockAcción: Modifica el stock de un producto (incremento o decremento).PATCH /api/products/{id}/nameAcción: Actualiza el nombre de un producto.
+GET /api/products/top-stock/franchise/{franchiseId}
+POST /api/products: Body {
+    "branchId": 1,
+    "name": "Hamburguesa normal",
+    "stock": 25
+}
+DELETE /api/products/{Id}
+PATCH /api/products/{productId}/stock?newStock=stock
+PATCH /api/products/{productId}/name?newName=name

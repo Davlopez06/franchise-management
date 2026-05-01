@@ -1,74 +1,49 @@
-Franchise Management API
-Este proyecto es una solución robusta y escalable para la gestión de franquicias, sucursales y productos, desarrollada bajo el paradigma de programación reactiva y principios de Clean Architecture.
+# 🚀 Franchise Management: Reactive API
 
-🚀 Enlaces del Proyecto
-Producción (Cloud): https://franchise-management-rty6.onrender.com/
+Este proyecto es una solución integral para la gestión de franquicias, sucursales y productos, desarrollada como parte de un reto técnico para **Accenture**. La arquitectura está diseñada bajo el paradigma de **programación reactiva**, asegurando un alto rendimiento y escalabilidad.
 
-Documentación Swagger (Prod): https://franchise-management-rty6.onrender.com/swagger-ui.html
+## 🌐 Enlaces del Proyecto
+*   **API en Producción (Cloud):** [https://franchise-management-rty6.onrender.com/](https://franchise-management-rty6.onrender.com/)
+*   **Documentación Interactiva (Swagger):** [https://franchise-management-rty6.onrender.com/swagger-ui.html](https://franchise-management-rty6.onrender.com/swagger-ui.html)
+*   **Base de Datos:** PostgreSQL en la nube (Neon Database).
 
-Entorno Local: http://localhost:8080/swagger-ui.html
+---
 
-🛠️ Stack Tecnológico
-Backend: Java 21, Spring Boot 4.0.6 (Spring WebFlux).
+## 🛠️ Stack Tecnológico
 
-Persistencia: R2DBC con PostgreSQL (Neon Database).
+*   **Backend:** Java 21 + Spring Boot 4.0.6 (Spring WebFlux).
+*   **Persistencia:** Driver **R2DBC** para operaciones de base de datos no bloqueantes.
+*   **Contenedores:** Docker (Estrategia de Multi-stage build).
+*   **Infraestructura:** Terraform (Infraestructura como Código).
+*   **Documentación:** OpenAPI 3 / Swagger UI.
 
-Contenedores: Docker & Docker Compose.
+---
 
-Infraestructura: Terraform (IaC).
+## 🏗️ Arquitectura y Mejores Prácticas
 
-Documentación: SpringDoc OpenAPI (Swagger).
+### ⚡ Programación Reactiva
+Se implementó **Spring WebFlux** junto con **R2DBC** para manejar flujos de datos asíncronos. Esto garantiza que la API pueda procesar una gran cantidad de peticiones concurrentes con un uso mínimo de memoria y CPU, ideal para entornos de nube como Render.
 
-🏗️ Arquitectura e Infraestructura
-1. Infraestructura como Código (IaC)
-Se ha incluido una carpeta infrastructure/terraform con la definición técnica para el aprovisionamiento de la base de datos en Neon. Se utiliza el proveedor de PostgreSQL para asegurar la portabilidad y el control de versiones de los esquemas de datos.
+### 🐳 Dockerización Profesional
+El proyecto incluye un `Dockerfile` optimizado:
+1.  **Etapa de Compilación:** Usa Maven y JDK 21 para construir el artefacto.
+2.  **Etapa de Ejecución:** Utiliza una imagen **JRE Alpine** (ultra ligera), lo que reduce el tamaño de la imagen final y minimiza la superficie de ataque para mayor seguridad.
 
-2. Dockerización (Multi-stage Build)
-La aplicación cuenta con un Dockerfile optimizado en dos etapas:
+### ☁️ Infraestructura como Código (IaC)
+En la carpeta `infrastructure/terraform` se incluye la configuración para gestionar la base de datos en **Neon**. Se utilizó una estrategia de vinculación mediante `terraform import` para adoptar recursos existentes y asegurar que la infraestructura sea reproducible y auditable.
 
-Build: Compilación con Maven y JDK 21.
+---
 
-Runtime: Imagen ligera basada en JRE Alpine para reducir el consumo de recursos en el despliegue.
+## 📋 Funcionalidades Destacadas
+Además de los servicios CRUD básicos, se implementó la lógica de negocio requerida:
+*   **Top Stock:** Consulta del producto con mayor stock por sucursal para una franquicia específica.
+*   **Actualizaciones Parciales:** Implementación de métodos `PATCH` para la actualización dinámica de nombres en franquicias, sucursales y productos.
 
-3. Persistencia Reactiva
-A diferencia del JDBC tradicional, este proyecto utiliza R2DBC. Esto permite que la aplicación maneje un alto volumen de peticiones concurrentes sin bloquear hilos de ejecución, optimizando el rendimiento del servicio en Render.
+---
 
-📋 Endpoints Principales
-La API permite gestionar el ciclo completo de una franquicia:
+## 💻 Ejecución Local
 
-Franquicias: Crear y renombrar franquicias.
-
-Sucursales: Agregar sucursales a una franquicia y actualizar sus nombres.
-
-Productos: Gestionar stock, eliminar productos y actualizar información.
-
-Consultas de Negocio: Endpoint especializado para obtener el producto con mayor stock por cada sucursal de una franquicia específica.
-
-💻 Guía de Uso Local
-Requisitos previos
-Docker Desktop iniciado.
-
-Java 21 (si desea ejecutar sin Docker).
-
-Ejecución con Docker Compose
-Para levantar todo el entorno (App + Base de Datos local) de forma automática:
-
-Bash
+### Opción 1: Docker Compose (Recomendado)
+Para levantar todo el entorno (App + DB) automáticamente:
+```bash
 docker-compose up --build
-Ejecución de Imagen Individual
-Si prefieres conectar el contenedor a la base de datos de la nube (Neon):
-
-Bash
-docker run -p 8080:8080 \
-  -e SPRING_R2DBC_URL="r2dbc:postgresql://ep-holy-fog-amac2a7c.c-5.us-east-1.aws.neon.tech/neondb?sslmode=require" \
-  -e SPRING_R2DBC_USERNAME="neondb_owner" \
-  -e SPRING_R2DBC_PASSWORD="tu_password" \
-  franchise-api
-📄 Notas de Entrega
-Base de Datos: Se utiliza una instancia serverless en Neon para asegurar persistencia real en el despliegue de Render.
-
-Validaciones: Se han implementado validaciones en los controladores para asegurar la integridad de los nombres y cantidades de stock.
-
-Documentación: El contrato de la API puede ser exportado en formato JSON desde /v3/api-docs.
-
-Desarrollado por Davi

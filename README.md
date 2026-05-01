@@ -61,3 +61,17 @@ Para levantar todo el entorno (App + DB) automáticamente:
 ```bash
 docker run -p 8080:8080 -e SPRING_R2DBC_URL="r2dbc:postgresql://ep-holy-fog-amac2a7c.c-5.us-east-1.aws.neon.tech/neondb?sslmode=require" -e SPRING_R2DBC_USERNAME="neondb_owner" -e SPRING_R2DBC_PASSWORD="npg_4y3gwUsPkVnp" franchise-api
 ```
+## 🚀 Endpoints de la API
+Todos los endpoints están documentados bajo la especificación OpenAPI (Swagger).
+1. Franquicias (Franchises)
+POST /api/franchisesAcción:
+  Crea una nueva franquicia en el sistema.
+  Body: {"name": "Nombre de la Franquicia"}.
+PATCH /api/franchises/{id}/nameAcción: Actualiza el nombre de una franquicia existente.
+3. Sucursales (Branches)
+POST /api/franchises/{franchiseId}/branchesAcción: Agrega una nueva sucursal a una franquicia específica.Body: {"name": "Nombre de la Sucursal"}.
+PATCH /api/branches/{id}/nameAcción: Actualiza el nombre de una sucursal.
+3. Productos (Products)
+POST /api/branches/{branchId}/productsAcción: Agrega un nuevo producto a una sucursal.Body: {"name": "Producto X", "stock": 100}.
+DELETE /api/branches/{branchId}/products/{productId}Acción: Elimina un producto de una sucursal específica.
+PATCH /api/products/{id}/stockAcción: Modifica el stock de un producto (incremento o decremento).PATCH /api/products/{id}/nameAcción: Actualiza el nombre de un producto.

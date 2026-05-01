@@ -14,7 +14,6 @@ Este proyecto es una solución integral para la gestión de franquicias, sucursa
 *   **Backend:** Java 21 + Spring Boot 4.0.6 (Spring WebFlux).
 *   **Persistencia:** Driver **R2DBC** para operaciones de base de datos no bloqueantes.
 *   **Contenedores:** Docker (Estrategia de Multi-stage build).
-*   **Infraestructura:** Terraform (Infraestructura como Código).
 *   **Documentación:** OpenAPI 3 / Swagger UI.
 
 ---

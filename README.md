@@ -64,26 +64,26 @@ docker run -p 8080:8080 -e SPRING_R2DBC_URL="r2dbc:postgresql://ep-holy-fog-amac
 ## 🚀 Endpoints de la API
 Todos los endpoints están documentados bajo la especificación OpenAPI (Swagger).
 1. Franquicias (Franchises)
-POST /api/franchises: Body:
+*  POST /api/franchises: Body:
 {
   "name": "Utilities"
 }
-GET /api/franchises
-PATCH /api/franchises/{franchiseId}/name?newName=name
+*  GET /api/franchises
+*  PATCH /api/franchises/{franchiseId}/name?newName=name
 2. Sucursales (Branches)
-GET /api/branches/franchise/{franchiseOd}
-POST /api/branches/: Body: {
+*  GET /api/branches/franchise/{franchiseOd}
+*  POST /api/branches: Body: {
     "name": "Sucursal Norte",
     "franchiseId": 3
 }
-PATCH /api/branches/{branchId}/name?newName=name
+*  PATCH /api/branches/{branchId}/name?newName=name
 3. Productos (Products)
-GET /api/products/top-stock/franchise/{franchiseId}
-POST /api/products: Body {
+*  GET /api/products/top-stock/franchise/{franchiseId}
+*  POST /api/products: Body {
     "branchId": 1,
     "name": "Hamburguesa normal",
     "stock": 25
 }
-DELETE /api/products/{Id}
-PATCH /api/products/{productId}/stock?newStock=stock
-PATCH /api/products/{productId}/name?newName=name
+*  DELETE /api/products/{Id}
+*  PATCH /api/products/{productId}/stock?newStock=stock
+*  PATCH /api/products/{productId}/name?newName=name

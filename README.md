@@ -28,9 +28,6 @@ El proyecto incluye un `Dockerfile` optimizado:
 1.  **Etapa de Compilación:** Usa Maven y JDK 21 para construir el artefacto.
 2.  **Etapa de Ejecución:** Utiliza una imagen **JRE Alpine** (ultra ligera), lo que reduce el tamaño de la imagen final y minimiza la superficie de ataque para mayor seguridad.
 
-### ☁️ Infraestructura como Código (IaC)
-En la carpeta `infrastructure/terraform` se incluye la configuración para gestionar la base de datos en **Neon**. Se utilizó una estrategia de vinculación mediante `terraform import` para adoptar recursos existentes y asegurar que la infraestructura sea reproducible y auditable.
-
 ---
 
 ## 📋 Funcionalidades Destacadas
@@ -42,7 +39,7 @@ Además de los servicios CRUD básicos, se implementó la lógica de negocio req
 
 ## 💻 Ejecución Local
 
-### Opción 1: Docker Compose (Recomendado)
 Para levantar todo el entorno (App + DB) automáticamente:
 ```bash
-docker-compose up --build
+docker run -p 8080:8080 -e SPRING_R2DBC_URL="r2dbc:postgresql://ep-holy-fog-amac2a7c.c-5.us-east-1.aws.neon.tech/neondb?sslmode=require" -e SPRING_R2DBC_USERNAME="neondb_owner" -e SPRING_R2DBC_PASSWORD="npg_4y3gwUsPkVnp" franchise-api
+```

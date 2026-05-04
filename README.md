@@ -4,7 +4,7 @@ Este proyecto es una solución integral para la gestión de franquicias, sucursa
 
 ## 🌐 Enlaces del Proyecto
 *   **API en Producción (Cloud):** [https://franchise-management-rty6.onrender.com/](https://franchise-management-rty6.onrender.com/)
-*   **Documentación Interactiva (Swagger):** [https://franchise-management-rty6.onrender.com/swagger-ui.html](https://franchise-management-rty6.onrender.com/swagger-ui.html)
+*   **Documentación** [https://franchise-management-rty6.onrender.com/v3/api-docs](https://franchise-management-rty6.onrender.com/v3/api-docs)
 *   **Base de Datos:** PostgreSQL en la nube (Neon Database).
 
 ---
